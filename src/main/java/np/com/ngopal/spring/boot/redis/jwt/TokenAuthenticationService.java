@@ -39,9 +39,11 @@ public class TokenAuthenticationService {
 
     private String headerString = "Authorization";
 
-    public TokenAuthenticationService(RedisService service) {
+    
+    
+    public TokenAuthenticationService(RedisService service, String key) {
         this.service = service;
-        secret = Sha512DigestUtils.shaHex(System.getenv("ENC_KEY"));
+        secret = Sha512DigestUtils.shaHex(key);
     }
 
     public void addAuthentication(HttpServletResponse response, AuthenticationTokenImpl auth) {
